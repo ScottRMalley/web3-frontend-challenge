@@ -9,7 +9,8 @@ import '@typechain/hardhat';
 import 'hardhat-deploy';
 import fs from "fs";
 
-let TESTNET_KEY = "";
+// not a real key, just for example
+let TESTNET_KEY = "5a1f79a620a138efe808996ae89e42e3a17d4e672ef8727c51c85af704b4faea";
 if (fs.existsSync('./testnet-deploy.key')) {
   TESTNET_KEY = fs.readFileSync('./testnet-deploy.key').toString().trim();
 }
