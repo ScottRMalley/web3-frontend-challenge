@@ -7,7 +7,6 @@ import '@nomicfoundation/hardhat-chai-matchers';
 import '@nomiclabs/hardhat-etherscan';
 import '@typechain/hardhat';
 import 'hardhat-deploy';
-import 'hardhat-abi-exporter';
 import fs from "fs";
 
 let TESTNET_KEY = "";
