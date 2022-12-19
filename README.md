@@ -58,3 +58,45 @@ Alternatively, this repository can be installed directly in the NextJS/React pro
 ```shell
 yarn add 
 ```
+Then the contracts and addresses can be directly imported via:
+```typescript
+  import { ethers } from "ethers";
+  import { AVAX_FUJI, FooToken__factory, BarToken__factory, Exchange__factory } from "web3-frontend-challenge";
+
+  const provider = new ethers.providers.JsonRpcProvider("https://api.avax-test.network/ext/bc/C/rpc");
+  // this will be replaced with metamask in the frontend
+  const wallet = new ethers.Wallet("<private-key>", provider);
+  
+  const fooToken = FooToken__factory.connect(AVAX_FUJI.contracts.FooToken.address, provider);
+  const exchange = Exchange__factory.connect(AVAX_FUJI.contracts.Exchange.address, provider);
+  const barToken = BarToken__factory.connect(AVAX_FUJI.contracts.BarToken.address, provider);
+
+  // initial funding of wallet with foo tokens
+  const fundTx = await fooToken.connect(wallet).fund();
+
+  // approve exchange contract
+  const amount = ethers.utils.parseUnits("10.0");
+  const approveTx = await fooToken.connect(wallet).approve(AVAX_FUJI.contracts.Exchange.address, amount);
+
+  // swap tokens
+  const swapTx = await exchange.connect(wallet)
+    .swap(AVAX_FUJI.contracts.FooToken.address, AVAX_FUJI.contracts.BarToken.address, amount);
+
+  // check bar token address balance
+  console.log(`balance: ${await barToken.balanceOf(wallet.address)}`);
+```
+
+For reference, the smart contracts are deployed at:
+* FooToken: `0xf1140386b245bad8aD4D586e93fe462ffA70Ba84`
+* BarToken: `0xe8001631598233B7eC1178650fDcEdEe5C2CC8d9`
+* Exchange: `0xa07a16529A6712411036A2310365bFeB6C2dB072`
+
+If you need to setup Metamask with the Avalanche Fuji you can use the following:
+
+* **Network Name**: Avalanche Testnet C-Chain
+* **Network URL**: https://api.avax-test.network/ext/bc/C/rpc
+* **Chain ID**: 43113
+* **Currency Symbol**: AVAX
+* **Block Explorer URL**: https://testnet.snowtrace.io/
+
+To get testnet AVAX for gas fees, you can use the Fuji Faucet at: https://faucet.avax.network/
