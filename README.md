@@ -33,13 +33,25 @@ The swap function can only be called if the user has approved the `Exchange` con
 tokens. This can be done using the standard ERC20 `approve(spender, amount)` functions on the tokens (see below for 
 some examples).
 
-To sumarize, with this frontend, users should be able to:
+To summarize, with this frontend, users should be able to:
 
 * Connect their Metamask wallet
 * Request an initial minting of FOO tokens
 * View their balance of FOO tokens
 * View their balance of BAR tokens
 * Swap FOO tokens for BAR tokens and vice versa
+
+## Requirements
+
+Some notes on what we are looking for in this assignment:
+* Don't worry too much about styling and UI beautification, the page should be readable and navigable, but doesn't 
+  need to be flashy
+* The project should be written in React/NextJS, preferably in Typescript
+* We are particularly interested in how you organize the project, how state is managed, and how components are 
+  broken down.
+* Your solution should be submitted as a link to a git repository, with a small README detailing the 
+  decisions you made, how you approached the problem, and a justification of which external tools, components, and 
+  libraries you chose to use.
 
 ## Connecting to the Smart Contracts
 
@@ -56,7 +68,7 @@ avax-testnet.json <--- ABI's are in here
 ```
 Alternatively, this repository can be installed directly in the NextJS/React project using:
 ```shell
-yarn add 
+yarn add git+https://github.com/scottrmalley/web3-frontend-challenge.git
 ```
 Then the contracts and addresses can be directly imported via:
 ```typescript
